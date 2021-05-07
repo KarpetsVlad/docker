@@ -1,0 +1,35 @@
+Встановлюємо докер:
+  sudo apt update
+  sudo apt install apt-transport-https
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  sudo apt update
+  sudo apt install docker-ce
+Добавляємо права користувачу:
+  sudo usermod -aG docker $USER
+Перевіряємо чи працює докер:
+  docker run hello-world
+Перевірка чи встановився image hello-world:
+  docker images
+Встановлюємо tomcat:
+  docker search tomcat
+  docker pull tomcat
+Запускаємо tomcat:
+  docker run -it -p 1234:8080 tomcat
+  docker run -it -p 8888:80 nginx
+  docker run -d -p 8888:80 nginx
+Створюємо свій image:
+  Спочатку створюємо директорію
+  Потім відкриваємо nano Dockerfile
+  у файлі приписуємо що потрібно
+  Створюємо image за допомогою команд - 
+    - docker build -t ім'я . (крапка потрібна для створення докеру локально)
+Запускаємо наш докер:
+  docker run -d -p  1234:80  name:tag
+Зупиняємо всі докери:
+  docker stop $(docker ps -a -q)
+Зупиняємо 1 докер:
+  docker stop container_ID_or_name
+Видалення контейнерів і image:
+  docker rm   # delete container
+  docker rmi  # delete image
